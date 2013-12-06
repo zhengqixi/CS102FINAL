@@ -1,7 +1,7 @@
 /* 
  * File:   main.c
- * Author: Venkat
- *
+ * Author: Venkat, Zhengqi
+ * 
  * Created on December 4, 2013, 6:14 PM
  */
 
