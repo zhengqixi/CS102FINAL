@@ -14,7 +14,8 @@
  * 
  */
 int main(int argc, char** argv) {
-    struct sockaddr_in server_addr;
+    printf("Zhengqi is stupid");
+	struct sockaddr_in server_addr;
     struct sockaddr_in     client_addr;
     
     server_addr.sin_addr=AF_INET;
