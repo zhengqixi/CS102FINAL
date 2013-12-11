@@ -15,7 +15,6 @@
  */
 int main(int argc, char **argv)
 {
-    printf("Zhengqi is stupid");
     struct sockaddr_in server_addr;
     struct sockaddr_in client_addr;
 
@@ -31,5 +30,6 @@ int main(int argc, char **argv)
     int new_fd =
 	accept(sockfd, (struct sockaddr *) &client_addr, &cli_size);
     if (recv(sockfd))
-	return (EXIT_SUCCESS);
+    	;
+    return (EXIT_SUCCESS);
 }
