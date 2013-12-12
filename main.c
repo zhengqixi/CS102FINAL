@@ -1,5 +1,5 @@
 /* 
- * File:   main.c
+ * File:   server.c
  * Author: Venkat, Zhengqi
  * 
  * Created on December 4, 2013, 6:14 PM
