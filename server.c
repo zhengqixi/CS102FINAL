@@ -9,7 +9,8 @@
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <systypes.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 /*
  * 
@@ -18,10 +19,10 @@ int main(int argc, char **argv)
 {
     struct sockaddr_in server_addr;
     struct sockaddr_in client_addr;
-    char[15] username;
+    char username[15];
 
-    server_addr.sin_addr = AF_INET;
-    server_addr.sin_family.s_addr = htonl(INADDR_ANY);
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     server_addr.sin_port = 1999;
 
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
