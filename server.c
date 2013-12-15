@@ -19,6 +19,8 @@
  
 void sendMsg(int * new_fd);
 void recvMsg(int * new_fd);
+char username[15];
+char servername[15];
 #define MAXDATALEN 256
 int main()
 {
@@ -32,6 +34,8 @@ int main()
     server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     server_addr.sin_port = 1999;
 
+	printf("Set server name: ");
+	scanf("%s",servername);
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
     bind(sockfd, (struct sockaddr *) &server_addr,
 	 sizeof(struct sockaddr));
@@ -41,6 +45,8 @@ int main()
 	accept(sockfd, (struct sockaddr *) &client_addr, &cli_size);
     if (recv(new_fd, username,sizeof(username), 0)>0){
     	printf("%s has joined the chat.\n", username);
+		
+		send(new_fd, servername,sizeof(servername),0);
     	pthread_create(&thrSend,NULL,sendMsg,&new_fd);
     	pthread_create(&thrRecv,NULL,recvMsg,&new_fd);
     }
@@ -56,8 +62,10 @@ sendMsg(int * new_fd){
 	while(1){
 		char * message[MAXDATALEN];
 		printf(":");
-		scanf("%s",message);
-		send(*new_fd,&message,MAXDATALEN, 0);
+		fgets(message,MAXDATALEN, stdin);
+		send(*new_fd,message,sizeof(message), 0);
+		fpurge(message);
+		fpurge(stdout);
 	}
 }
 
@@ -65,7 +73,10 @@ recvMsg(int * new_fd){
 	char * message[MAXDATALEN];
 	while(1){
 		if(recv(*new_fd,message,sizeof(message),0)>0){
-			printf("%s\n",message);
+			printf("%s: %s\n",username,message);
+			printf("\n");
 		}
+	fpurge(stdout);
+	fpurge(message);
 	}
 }
