@@ -17,8 +17,8 @@
  * 
  */
  
-#define int MAXDATALEN = 256;
-int main(int argc, char **argv)
+#define int MAXDATALEN = 256
+int main()
 {
     struct sockaddr_in server_addr;
     struct sockaddr_in client_addr;
