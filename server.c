@@ -17,7 +17,7 @@
  * 
  */
  
-#define MAXDATALEN = 256
+#define MAXDATALEN 256
 int main()
 {
     struct sockaddr_in server_addr;
