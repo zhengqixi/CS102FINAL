@@ -17,7 +17,7 @@
  * 
  */
  
-#define int MAXDATALEN = 256
+#define MAXDATALEN = 256
 int main()
 {
     struct sockaddr_in server_addr;
@@ -51,7 +51,7 @@ int main()
 
 sendMsg(int * new_fd){
 	while(1){
-		char * message[256];
+		char * message[MAXDATALEN];
 		printf(":");
 		scanf("%s",&message);
 		send(*new_fd,&message,MAXDATALEN, 0);
