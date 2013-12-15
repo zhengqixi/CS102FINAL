@@ -43,6 +43,7 @@ int main(){
    send(sockfd, &username, sizeof(username), 0);
    pthread_create(&thrSend,NULL,sendMsg,&sockfd);
    pthread_create(&thrRecv,NULL,recvMsg,&sockfd);
+   while(1){}
 }
 
 sendMsg(int * sockfd){
