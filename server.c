@@ -17,6 +17,8 @@
  * 
  */
  
+void sendMsg(int * new_fd);
+void recvMsg(int * new_fd);
 #define MAXDATALEN 256
 int main()
 {
@@ -53,16 +55,16 @@ sendMsg(int * new_fd){
 	while(1){
 		char * message[MAXDATALEN];
 		printf(":");
-		scanf("%s",&message);
+		scanf("%s",message);
 		send(*new_fd,&message,MAXDATALEN, 0);
 	}
 }
 
 recvMsg(int * new_fd){
-	
+	char * message[MAXDATALEN];
 	while(1){
-		if(recv(new_fd,message,sizeof(message),0)>0){
-			printf("%s\n",&message);
+		if(recv(*new_fd,message,sizeof(message),0)>0){
+			printf("%s\n",message);
 		}
 	}
 }

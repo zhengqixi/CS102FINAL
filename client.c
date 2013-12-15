@@ -20,9 +20,10 @@ int sockfd;
 char username[15];
 int thrSend;
 int thrRecv;
-#define int MAXDATALEN = 256;
-
-int main(int argc, char argv[]){
+#define MAXDATALEN 256
+void sendMsg(int * sockfd);
+void recvMsg(int * sockfd);
+int main(){
    printf("Type in server IP");
    scanf("%s", &serverIP); 
    printf("\nType in port number");
@@ -48,14 +49,14 @@ sendMsg(int * sockfd){
    while(1){
       char* message[MAXDATALEN];
       printf(":");
-      scanf("%s",&message);
-      send(*sockfd,&message,sizeof(&message), 0);
+      scanf("%s",message);
+      send(*sockfd,message,sizeof(message), 0);
    }
 }
 
 recvMsg(int * sockfd){
-   
-   if(recv(int sockfd, message,sizeof(message),0)>0)
-      printf("%s\n",&message);
+   char * message[MAXDATALEN];
+   if(recv(*sockfd, message,sizeof(message),0)>0)
+      printf("%s\n",message);
 
 }
