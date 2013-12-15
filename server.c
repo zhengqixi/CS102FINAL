@@ -44,7 +44,8 @@ int main()
     	pthread_create(&thrSend,NULL,sendMsg,&new_fd);
     	pthread_create(&thrRecv,NULL,recvMsg,&new_fd);
     }
-    
+    while(1){
+    }
     
     
     return (EXIT_SUCCESS);
