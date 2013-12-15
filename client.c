@@ -44,16 +44,16 @@ int main(int argc, char argv[]){
    pthread_create(&thrRecv,NULL,recvMsg,&sockfd);
 }
 
-sendMsg(int sockfd){
+sendMsg(int * sockfd){
    while(1){
       char* message[MAXDATALEN];
       printf(":");
-      scanf(%s,&message);
-      send(sockfd,&message,sizeof(&message), 0);
+      scanf("%s",&message);
+      send(*sockfd,&message,sizeof(&message), 0);
    }
 }
 
-recvMsg(int sockfd){
+recvMsg(int * sockfd){
    
    if(recv(int sockfd, message,sizeof(message),0)>0)
       printf("%s\n",&message);
