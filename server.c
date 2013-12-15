@@ -12,10 +12,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <pthread.h>
-
-/*
- * 
- */
  
 void sendMsg(int * new_fd);
 void recvMsg(int * new_fd);
