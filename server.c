@@ -40,8 +40,8 @@ int main(int argc, char **argv)
 	accept(sockfd, (struct sockaddr *) &client_addr, &cli_size);
     if (recv(new_fd, username,sizeof(username), 0)>0){
     	printf("%s has joined the chat.\n", username);
-    	pthread_create(&thrSend,NULL,sendMsg,NULL);
-    	pthread_create(&thrRecv,NULL,recvMsg,NULL);
+    	pthread_create(&thrSend,NULL,sendMsg,&new_fd);
+    	pthread_create(&thrRecv,NULL,recvMsg,&new_fd);
     }
     
     
@@ -50,16 +50,17 @@ int main(int argc, char **argv)
 }
 
 
-sendMsg(){
+sendMsg(int * new_fd){
 	while(1){
-		String message;
+		char * message[256];
 		printf(":");
-		scanf(%s,message);
-		send(new_fd,&message,MAXDATALEN, 0);
+		scanf("%s",&message);
+		send(*new_fd,&message,MAXDATALEN, 0);
 	}
 }
 
-recvMsg(){
+recvMsg(int * new_fd){
+	
 	while(1){
 		if(recv(new_fd,message,sizeof(message),0)>0){
 			printf("%s\n",&message);
