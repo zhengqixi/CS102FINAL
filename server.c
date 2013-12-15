@@ -11,7 +11,6 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <string>
 #include <pthread.h>
 
 /*
