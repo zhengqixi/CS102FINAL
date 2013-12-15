@@ -11,15 +11,21 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <string>
+#include <pthread.h>
 
 /*
  * 
  */
+ 
+#define int MAXDATALEN = 256;
 int main(int argc, char **argv)
 {
     struct sockaddr_in server_addr;
     struct sockaddr_in client_addr;
     char username[15];
+    int thrSend;
+    int thrRecv;
 
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -33,8 +39,30 @@ int main(int argc, char **argv)
     int new_fd =
 	accept(sockfd, (struct sockaddr *) &client_addr, &cli_size);
     if (recv(new_fd, username,sizeof(username), 0)>0){
-    	printf("%s has joined the chat.", username);
+    	printf("%s has joined the chat.\n", username);
+    	pthread_create(&thrSend,NULL,sendMsg,NULL);
+    	pthread_create(&thrRecv,NULL,recvMsg,NULL);
     }
     
+    
+    
     return (EXIT_SUCCESS);
+}
+
+
+sendMsg(){
+	while(1){
+		String message;
+		printf(":");
+		scanf(%s,message);
+		send(new_fd,&message,MAXDATALEN, 0);
+	}
+}
+
+recvMsg(){
+	while(1){
+		if(recv(new_fd,message,sizeof(message),0)>0){
+			printf("%s\n",&message);
+		}
+	}
 }
